@@ -1,5 +1,6 @@
-"use client";
+'use client';
 import React, { useState } from "react";
+import SidebarMenuItem from "./SidebarMenuItem";
 
 const menuOptions = [
   {
@@ -31,7 +32,7 @@ const menuOptions = [
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        className="w-6 h-6 text-indigo-100 font-bol"
+        className="w-6 h-6 text-indigo-100 font-bold"
       >
         <path
           strokeLinecap="round"
@@ -49,7 +50,7 @@ const menuOptions = [
   viewBox="0 0 24 24"
   stroke-width="1.5"
   stroke="currentColor"
-  className="w-6 h-6"
+  className="w-6 h-6 text-indigo-100 font-bold"
 >
   <path
     stroke-linecap="round"
@@ -104,18 +105,17 @@ export const SideBar = () => {
         <div className="h-full px-3 py-4 overflow-y-auto bg-indigo-500 dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
             <p className="my-9 p-3 font-bold text-white text-2xl">
-              Patients <span className="block text-indigo-900">Administrator</span>
+              Patients{" "}
+              <span className="block text-indigo-900">Administrator</span>
             </p>
             <li className="mt-9">
               {menuOptions.map((menuOption, index) => (
-                <a
+                <SidebarMenuItem
                   key={index}
-                  href={menuOption.link}
-                  className="flex my-2 hover:bg-indigo-700 items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group"
-                >
-                  {menuOption.svg}
-                  <span className="ms-3 py-3 text-indigo-100 font-bold">{menuOption.menu}</span>
-                </a>
+                  menu={menuOption.menu}
+                  svg={menuOption.svg}
+                  link={menuOption.link}
+                />
               ))}
             </li>
           </ul>
@@ -135,3 +135,4 @@ export const SideBar = () => {
 };
 
 export default SideBar;
+
