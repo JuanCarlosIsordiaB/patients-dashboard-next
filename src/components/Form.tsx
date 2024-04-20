@@ -1,6 +1,19 @@
-import React from "react";
+'use client'
+import {useForm} from 'react-hook-form';
+import {Patient} from '../interfaces';
+
+
+
+
+
 
 export const Form = () => {
+  const {register, handleSubmit, formState: {errors}} = useForm<Patient>();
+
+ 
+  const registerPatient = (data:Patient) => {
+    console.log(data);
+  }
   return (
     <div className=" mx-auto max-w-xl  h-screen ">
       <p className="text-2xl  mt-5 text-center mb-10">
@@ -8,19 +21,35 @@ export const Form = () => {
       </p>
 
       <form
+        onSubmit={handleSubmit(registerPatient)}
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
         noValidate
       >
+        
+        
         <div className="mb-5">
           <label htmlFor="name" className="text-sm uppercase font-bold">
             Patient
           </label>
           <input
             id="name"
-            className="w-full p-3  border border-gray-100"
+            className={`w-full p-3 border rounded-md ${
+              errors.name ? 'border-red-500' : 'border-gray-100'
+            }`}
             type="text"
             placeholder="Patient Name"
+            {
+              ...register('name', {
+                required: 'This field is required',
+                minLength: {
+                  value: 3,
+                  message: 'Minimum length should be 3',
+                },
+              
+              })
+            }
           />
+          
         </div>
 
         <div className="mb-5">
@@ -29,9 +58,21 @@ export const Form = () => {
           </label>
           <input
             id="email"
-            className="w-full p-3  border border-gray-100"
+            className={`w-full p-3 border rounded-md ${
+              errors.email ? 'border-red-500' : 'border-gray-100'
+            }`}
             type="email"
             placeholder="Patient Email"
+            {
+              ...register('email', {
+                required: 'This field is required',
+                pattern: {
+                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                  message: 'Invalid email format',
+                }
+              
+              })
+            }
           />
         </div>
 
@@ -41,8 +82,16 @@ export const Form = () => {
           </label>
           <input
             id="date"
-            className="w-full p-3  border border-gray-100"
+            className={`w-full p-3 border rounded-md ${
+              errors.date ? 'border-red-500' : 'border-gray-100'
+            }`}
             type="date"
+            {
+              ...register('date', {
+                required: 'This field is required',
+                
+              })
+            }
           />
         </div>
 
@@ -52,14 +101,22 @@ export const Form = () => {
           </label>
           <textarea
             id="symptoms"
-            className="w-full p-3  border border-gray-100"
+            className={`w-full p-3 border rounded-md ${
+              errors.symptoms ? 'border-red-500' : 'border-gray-100'
+            }`}
             placeholder="Symptoms of the patient"
+            {
+              ...register('symptoms', {
+                required: 'This field is required',
+                
+              })
+            }
           ></textarea>
         </div>
 
         <input
           type="submit"
-          className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
+          className="bg-indigo-600 w-full p-3 text-white uppercase rounded-md font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
           value="Add Patient"
         />
       </form>

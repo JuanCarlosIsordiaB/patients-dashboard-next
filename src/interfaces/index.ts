@@ -1,0 +1,3 @@
+
+
+export * from './patient.interface';
