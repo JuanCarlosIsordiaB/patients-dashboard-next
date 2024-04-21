@@ -1,32 +1,27 @@
-'use client'
-import {useForm} from 'react-hook-form';
-import {Patient} from '../interfaces';
-
-
-
-
-
+"use client";
+import { useForm } from "react-hook-form";
+import { Patient } from "../interfaces";
 
 export const Form = () => {
-  const {register, handleSubmit, formState: {errors}} = useForm<Patient>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Patient>();
 
- 
-  const registerPatient = (data:Patient) => {
+  const registerPatient = (data: Patient) => {
     console.log(data);
-  }
+  };
   return (
     <div className=" mx-auto max-w-xl  h-screen ">
-      <p className="text-2xl  mt-5 text-center mb-10">
-        Add New <span className="font-bold">Patient</span>
-      </p>
-
       <form
         onSubmit={handleSubmit(registerPatient)}
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
         noValidate
       >
-        
-        
+        <p className="text-2xl  mt-5 text-center mb-10 font-bold text-gray-500">
+          Add New <span className=" text-indigo-500">Patient</span>
+        </p>
         <div className="mb-5">
           <label htmlFor="name" className="text-sm uppercase font-bold">
             Patient
@@ -34,22 +29,18 @@ export const Form = () => {
           <input
             id="name"
             className={`w-full p-3 border rounded-md ${
-              errors.name ? 'border-red-500' : 'border-gray-100'
+              errors.name ? "border-red-500" : "border-gray-100"
             }`}
             type="text"
             placeholder="Patient Name"
-            {
-              ...register('name', {
-                required: 'This field is required',
-                minLength: {
-                  value: 3,
-                  message: 'Minimum length should be 3',
-                },
-              
-              })
-            }
+            {...register("name", {
+              required: "This field is required",
+              minLength: {
+                value: 3,
+                message: "Minimum length should be 3",
+              },
+            })}
           />
-          
         </div>
 
         <div className="mb-5">
@@ -59,20 +50,17 @@ export const Form = () => {
           <input
             id="email"
             className={`w-full p-3 border rounded-md ${
-              errors.email ? 'border-red-500' : 'border-gray-100'
+              errors.email ? "border-red-500" : "border-gray-100"
             }`}
             type="email"
             placeholder="Patient Email"
-            {
-              ...register('email', {
-                required: 'This field is required',
-                pattern: {
-                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
-                  message: 'Invalid email format',
-                }
-              
-              })
-            }
+            {...register("email", {
+              required: "This field is required",
+              pattern: {
+                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                message: "Invalid email format",
+              },
+            })}
           />
         </div>
 
@@ -83,15 +71,12 @@ export const Form = () => {
           <input
             id="date"
             className={`w-full p-3 border rounded-md ${
-              errors.date ? 'border-red-500' : 'border-gray-100'
+              errors.date ? "border-red-500" : "border-gray-100"
             }`}
             type="date"
-            {
-              ...register('date', {
-                required: 'This field is required',
-                
-              })
-            }
+            {...register("date", {
+              required: "This field is required",
+            })}
           />
         </div>
 
@@ -102,15 +87,12 @@ export const Form = () => {
           <textarea
             id="symptoms"
             className={`w-full p-3 border rounded-md ${
-              errors.symptoms ? 'border-red-500' : 'border-gray-100'
+              errors.symptoms ? "border-red-500" : "border-gray-100"
             }`}
             placeholder="Symptoms of the patient"
-            {
-              ...register('symptoms', {
-                required: 'This field is required',
-                
-              })
-            }
+            {...register("symptoms", {
+              required: "This field is required",
+            })}
           ></textarea>
         </div>
 
