@@ -1,8 +1,12 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { Patient } from "../interfaces";
+import {v4 as uuidv4} from 'uuid';
+import { usePatientStore } from "../store/store";
 
 export const Form = () => {
+
+  const { addPatient , patients} = usePatientStore();
   const {
     register,
     handleSubmit,
@@ -10,7 +14,9 @@ export const Form = () => {
   } = useForm<Patient>();
 
   const registerPatient = (data: Patient) => {
-    console.log(data);
+    data.id = uuidv4();
+    addPatient(data);
+    console.log(patients);
   };
   return (
     <div className=" mx-auto max-w-xl  h-screen ">
