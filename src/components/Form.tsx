@@ -1,25 +1,30 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { redirect } from 'next/navigation';
 import { Patient } from "../interfaces";
 import {v4 as uuidv4} from 'uuid';
 import { usePatientStore } from "../store/store";
 
+
 export const Form = () => {
 
   const { addPatient , patients} = usePatientStore();
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Patient>();
 
-  const registerPatient = (data: Patient) => {
+
+  const registerPatient =  (data: Patient) => {
     data.id = uuidv4();
     addPatient(data);
-    console.log(patients);
+    
   };
   return (
     <div className=" mx-auto max-w-xl  h-screen ">
+      
       <form
         onSubmit={handleSubmit(registerPatient)}
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
@@ -103,6 +108,7 @@ export const Form = () => {
         </div>
 
         <input
+
           type="submit"
           className="bg-indigo-600 w-full p-3 text-white uppercase rounded-md font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
           value="Add Patient"
