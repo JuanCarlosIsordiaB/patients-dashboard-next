@@ -8,4 +8,3 @@ export default function CreatePage() {
     </div>
   );
 }
-export const SEO = {};
