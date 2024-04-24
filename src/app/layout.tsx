@@ -4,10 +4,7 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Administrator Patients",
-  description: "Start with the administrator of your patients",
-};
+
 
 export default function RootLayout({
   children,
