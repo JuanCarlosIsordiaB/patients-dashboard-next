@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation';
 import { Patient } from "../interfaces";
 import {v4 as uuidv4} from 'uuid';
 import { usePatientStore } from "../store/store";
+import { useRouter } from 'next/navigation'
+
 
 
 export const Form = () => {
@@ -15,12 +17,13 @@ export const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Patient>();
+  const router = useRouter();
 
 
   const registerPatient =  (data: Patient) => {
     data.id = uuidv4();
     addPatient(data);
-    
+    router.push('/list')
   };
   return (
     <div className=" mx-auto max-w-xl  h-screen ">
@@ -108,7 +111,7 @@ export const Form = () => {
         </div>
 
         <input
-
+          //onClick={() => router.push('/list')}
           type="submit"
           className="bg-indigo-600 w-full p-3 text-white uppercase rounded-md font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
           value="Add Patient"

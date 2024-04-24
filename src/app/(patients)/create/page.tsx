@@ -1,11 +1,6 @@
 import Form from "@/components/Form";
 
 
-export const SEO = {
-  title: "Administrator Patients - Add Patients",
-  description: "You can find all the patients here.",
-  keywords: ["create", "patient", "form", "medical", "health"],
-};
 
 export default function CreatePage() {
   return (
