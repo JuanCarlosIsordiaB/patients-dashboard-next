@@ -1,7 +1,7 @@
 import Form from "@/components/Form";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Administrator Patients - Create",
   description: "Start with the administrator of your patients",
 };
